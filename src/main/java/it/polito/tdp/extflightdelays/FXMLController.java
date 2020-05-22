@@ -74,7 +74,6 @@ public class FXMLController {
     		txtResult.appendText("Seleziona i due aeroporti!");
     		return ;
     	}
-    	
     	List<Airport> percorso = this.model.trovaPercorso(a1, a2);
     	
     	if(percorso == null) {
@@ -84,7 +83,6 @@ public class FXMLController {
     		txtResult.appendText("Percorso: \n");
     		for(Airport a : percorso) {
         		txtResult.appendText(a.toString() + "\n");
-
     		}
     	}
 
