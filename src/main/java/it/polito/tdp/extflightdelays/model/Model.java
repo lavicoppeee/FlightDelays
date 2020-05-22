@@ -23,7 +23,7 @@ public class Model {
 	private Map<Integer, Airport> idMap;
 	private ExtFlightDelaysDAO dao;
 	
-	private Map<Airport,Airport> visita;
+	private Map<Airport,Airport> visita; //copia di aereoporti 
 		
 	
 	public Model() {
@@ -47,6 +47,7 @@ public class Model {
 		
 		for(Rotta r : dao.getRotte(idMap)) {
 			
+			//aggiungo l'arco solo se i due vertici della rotta sono nel grafo
 			if(this.grafo.containsVertex(r.getA1()) && this.grafo.containsVertex(r.getA2())) {
 				
 				DefaultWeightedEdge e = this.grafo.getEdge(r.a1, r.a2);
@@ -82,6 +83,7 @@ public class Model {
 		//reinizializzo la mappa della visita
 		visita = new HashMap<>();
 		
+		//iteratore
 		BreadthFirstIterator<Airport, DefaultWeightedEdge> it = new BreadthFirstIterator<>(this.grafo,a1);
 		
 		
@@ -142,6 +144,7 @@ public class Model {
 			return null;
 		}
 		
+		//tirare fuori il percorso dall'arrivo
 		Airport step = a2;
 		
 		while(!step.equals(a1)) {
@@ -151,7 +154,7 @@ public class Model {
 		
 		percorso.add(a1);
 		
-		return percorso;
+		return percorso; //arraylist creato inizialmente, sarebbe i vari areoporti toccati
 		
 	}
 	
